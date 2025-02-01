@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pandatronik_dev?useUnicode=yes&characterEncoding=utf-8&serverTimezone=UTC
+    # schema: classpath:init-schema.sql
+    username: root
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+    db-properties:
+      useSSL: false
+
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+
+  mail:
+    host: smtp.gmail.com
+    username: dummy
+    password: dummy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+          ssl:
+            enable: true
+
+jasypt:
+  encryptor:
+    password: xf5M0da
+
+webmaster:
+  username: admin
+  password: password
+  email: ""

@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    # Uncomment to test locally (no docker and no kubernetes)
+    # url: jdbc:mysql://localhost:3306/pandatronik_dev?useUnicode=yes&characterEncoding=utf-8&serverTimezone=UTC
+
+    # Docker to DB on local machine communication
+    # url: jdbc:mysql://host.docker.internal:3306/pandatronik_dev_docker?useUnicode=yes&characterEncoding=utf-8&serverTimezone=UTC
+
+    # Mysql docker container
+    # url: jdbc:mysql://pandatronik-mysql:3306/pandatronik_dev_docker?useUnicode=yes&characterEncoding=utf-8&serverTimezone=UTC
+
+    # Kubernetes
+    url: jdbc:mysql://${MYSQL_ADDRESS}:${MYSQL_PORT}/pandatronik_dev_docker?useUnicode=yes&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+    db-properties:
+      useSSL: false
+    # initialization-mode: always
+    sql:
+      init:
+        mode: always
+        defer-datasource-initialization: true
+        data-locations: classpath:data-kube-startup.sql
+  mail:
+    host: smtp.gmail.com
+    username: dummy
+    password: dummy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+          ssl:
+            enable: true
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+
+jasypt:
+  encryptor:
+    password: xf5M0da
+
+webmaster:
+  username: admin
+  password: password
+  email: ""
